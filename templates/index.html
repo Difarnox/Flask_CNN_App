@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model CNN - Prediksi Gambar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Prediksi Gambar dengan CNN</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Prediksi</button>
+        <button type="submit" name="clear">Clear</button>
+    </form>
+    
+    {% if filename %}
+        <h3>Hasil Prediksi:</h3>
+        <!-- Gambar dan teks dalam container flex -->
+        <div class="prediction-container">
+            <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image">
+            <div class="prediction-text">
+                <p>Label: {{ label }}</p>
+                <p>Confidence: {{ '%.2f' % confidence }}%</p>
+            </div>
+        </div>
+    {% endif %}
+    
+    {% if accuracy_data %}
+        <h3>Grafik Akurasi</h3>
+        <img src="{{ url_for('static', filename='accuracy_loss_plot.png') }}" alt="Akurasi Grafik">
+    {% endif %}
+    
+    {% if loss_data %}
+        <h3>Grafik Loss</h3>
+        <img src="{{ url_for('static', filename='accuracy_loss_plot_loss.png') }}" alt="Loss Grafik">
+    {% endif %}
+    
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
