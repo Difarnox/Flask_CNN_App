@@ -1,0 +1,341 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #f4f4f4;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease-in-out;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 22px;
+    margin: 0;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.sidebar ul li {
+    list-style: none;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
+    text-align: left;
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar ul li a i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+}
+
+.sidebar ul li a span {
+    margin-left: 35px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #1a252f;
+}
+
+/* Content Area */
+.content {
+    margin-left: 300px;  /* Menambahkan jarak antara sidebar dan konten */
+    padding: 20px;
+    width: calc(100% - 270px); /* Menyesuaikan lebar dengan sidebar + margin */
+    min-height: 100vh;
+    transition: margin-left 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Agar konten dalam .content terpusat secara horizontal */
+    justify-content: flex-start; /* Agar konten tetap di atas dan tidak terpusat vertikal */
+}
+
+
+/* Section Styling */
+#classification-section, #cnn-model-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto; /* Membuat kontainer terpusat secara horizontal */
+    display: flex;
+    flex-direction: column;  /* Membuat konten tertata secara vertikal */
+    align-items: center;     /* Menyeimbangkan konten di tengah secara vertikal */
+}
+
+/* Memastikan konten dalam tab juga terpusat */
+.tabcontent {
+    padding: 20px;
+    width: 100%;
+    max-width: 810px; /* Mengurangi lebar konten dalam tab */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Mengatur gambar dan konten agar terpusat */
+.tabcontent img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    display: block;  /* Mengatur gambar menjadi block agar bisa responsif */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#classification-section.active, #cnn-model-section.active {
+    display: block;
+}
+
+/* File Upload */
+input[type="file"] {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Button Styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button {
+    flex: 1;
+    max-width: 150px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#clear-btn {
+    background-color: #e74c3c;
+}
+
+#clear-btn:hover {
+    background-color: #c0392b;
+}
+
+#uploaded-image {
+    width: 100%;
+    max-width: 250px;
+    margin: 20px auto 10px;
+    display: none;
+    border-radius: 5px;
+}
+
+#prediction-result {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 10px;
+    display: none;
+}
+
+/* Tabs Section */
+.tab {
+    display: flex;
+    justify-content: flex-start; /* Mengubah ini untuk meratakan ke kiri */
+    border-bottom: 2px solid #ccc;
+    background: #ecf0f1;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+    max-width: 600px;
+    width: 50%;
+}
+
+.tab button {
+    background: #bdc3c7;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-size: 12px;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+    color: #2c3e50;
+    font-weight: bold;
+    flex: 1;
+}
+
+.tab button:hover {
+    background: #95a5a6;
+}
+
+.tab button.active {
+    background: #3498db;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tabcontent {
+    display: none;
+    padding: 15px;
+    background: white;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: -1px;
+}
+
+.tabcontent.active {
+    display: block;
+}
+
+/* CSS untuk mengatur ukuran gambar di dalam tab */
+.tabcontent img {
+    max-width: 100%; /* Gambar akan mengikuti lebar kontainer */
+    height: auto;    /* Menjaga rasio aspek gambar */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    display: block;  /* Mengatur gambar menjadi block agar bisa responsif */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Khusus untuk grafik dan confusion matrix */
+#ChartCNN img,
+#ChartNASNet img,
+#ChartVGG img,
+#ChartXception img,
+#ConfusionMatrixCNN img,
+#ConfusionMatrixNASNet img,
+#ConfusionMatrixVGG img,
+#ConfusionMatrixXception img {
+    max-width: 90%; /* Maksimum lebar 90% dari kontainer */
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Agar kontainer tab memiliki margin internal */
+.tabcontent {
+    padding: 20px;
+}
+
+/* Menambahkan margin pada gambar agar tidak terlalu rapat */
+.tabcontent div {
+    margin-bottom: 30px;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 30px;
+    }
+
+    .sidebar h2 {
+        display: none;
+    }
+
+    .sidebar ul li a {
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+    }
+
+    .sidebar ul li a i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .sidebar ul li a span {
+        display: none;
+    }
+
+    .content {
+        margin-left: 30px;
+        width: calc(100% - 30px);
+    }
+
+    .tabcontent img {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sidebar {
+        width: 20px;
+    }
+
+    .content {
+        margin-left: 20px;
+        width: calc(100% - 20px);
+    }
+
+    .sidebar ul li a {
+        height: 20px;
+        width: 20px;
+        line-height: 20px;
+    }
+
+    .sidebar ul li a i {
+        font-size: 14px;
+    }
+}
