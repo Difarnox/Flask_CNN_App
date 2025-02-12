@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deteksi Kondisi Cabai</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cnn_model.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>MENU</h2>
+        <ul>
+            <li><a href="#" id="menu-classification"><i class="fas fa-camera"></i><span>Image Classification</span></a></li>
+            <li><a href="#" id="menu-cnn-model"><i class="fas fa-chart-bar"></i><span>CNN Model</span></a></li>
+        </ul>        
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Image Classification Section -->
+        <div id="classification-section">
+            <h2>Klasifikasi Gambar Cabai</h2>
+            <p>Silakan unggah gambar cabai untuk mengetahui kondisinya.</p>
+
+            <input type="file" id="image-upload" accept="image/*">
+            <div class="button-container">
+                <button id="clear-btn">Clear</button>
+                <button id="submit-btn">Submit</button>
+            </div>
+
+            <img id="uploaded-image" src="" alt="Uploaded Image" style="display:none;">
+            <div id="prediction-result"></div>
+        </div>
+
+        <!-- CNN Model Section -->
+        <div id="cnn-model-section" style="display:none;">
+            <h2>Model CNN - Analisis Data</h2>
+            <p>Pilih salah satu tab di bawah untuk melihat informasi model.</p>
+
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Chart')">Chart</button>
+                <button class="tablinks" onclick="openTab(event, 'ConfusionMatrix')">Confusion Matrix</button>
+                <button class="tablinks" onclick="openTab(event, 'ROCcurve')">ROC Curve</button>
+            </div>
+
+            <!-- Chart Tab -->
+            <div id="Chart" class="tabcontent">
+                <h3>Grafik Akurasi</h3>
+                <div id="ChartCNN">
+                    <h4>Grafik Akurasi CNN</h4>
+                    <img src="{{ url_for('static', filename='images/training_validation_graphs.png') }}" alt="Grafik Akurasi CNN">
+                </div>
+                <div id="ChartNASNet">
+                    <h4>Grafik Akurasi NASNet</h4>
+                    <img src="{{ url_for('static', filename='images/training_validation_graphs_nasnet.png') }}" alt="Grafik Akurasi NASNet">
+                </div>
+                <div id="ChartVGG">
+                    <h4>Grafik Akurasi VGG16</h4>
+                    <img src="{{ url_for('static', filename='images/training_validation_graphs_vgg.png') }}" alt="Grafik Akurasi VGG16">
+                </div>
+                <div id="ChartXception">
+                    <h4>Grafik Akurasi Xception</h4>
+                    <img src="{{ url_for('static', filename='images/training_validation_graphs_xception.png') }}" alt="Grafik Akurasi Xception">
+                </div>
+            </div>
+
+            <!-- Confusion Matrix Tab -->
+            <div id="ConfusionMatrix" class="tabcontent">
+                <h3>Confusion Matrix</h3>
+                <p>Analisis keakuratan model berdasarkan prediksi dan data sebenarnya.</p>
+                <div id="ConfusionMatrixCNN">
+                    <h4>Confusion Matrix CNN</h4>
+                    <img src="{{ url_for('static', filename='images/confusion_matrix.png') }}" alt="Confusion Matrix CNN">
+                </div>
+                <div id="ConfusionMatrixNASNet">
+                    <h4>Confusion Matrix NASNet</h4>
+                    <img src="{{ url_for('static', filename='images/confusion_matrix_nasnet.png') }}" alt="Confusion Matrix NASNet">
+                </div>
+                <div id="ConfusionMatrixVGG">
+                    <h4>Confusion Matrix VGG16</h4>
+                    <img src="{{ url_for('static', filename='images/confusion_matrix_vgg.png') }}" alt="Confusion Matrix VGG16">
+                </div>
+                <div id="ConfusionMatrixXception">
+                    <h4>Confusion Matrix Xception</h4>
+                    <img src="{{ url_for('static', filename='images/confusion_matrix_xception.png') }}" alt="Confusion Matrix Xception">
+                </div>
+            </div>
+
+            <!-- ROC Curve Tab -->
+            <div id="ROCcurve" class="tabcontent">
+                <h3>ROC Curve</h3>
+                <p>Kurva ROC untuk mengevaluasi performa model.</p>
+                <div id="ROCCurveCNN">
+                    <h4>ROC Curve CNN</h4>
+                    <img src="{{ url_for('static', filename='images/roc_curve.png') }}" alt="ROC Curve CNN">
+                </div>
+                <div id="ROCCurveNASNet">
+                    <h4>ROC Curve NASNet</h4>
+                    <img src="{{ url_for('static', filename='images/roc_curve_nasnet.png') }}" alt="ROC Curve NASNet">
+                </div>
+                <div id="ROCCurveVGG">
+                    <h4>ROC Curve VGG16</h4>
+                    <img src="{{ url_for('static', filename='images/roc_curve_vgg.png') }}" alt="ROC Curve VGG16">
+                </div>
+                <div id="ROCCurveXception">
+                    <h4>ROC Curve Xception</h4>
+                    <img src="{{ url_for('static', filename='images/roc_curve_xception.png') }}" alt="ROC Curve Xception">
+                </div>   
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/cnn_model.js') }}"></script>
+</body>
+</html>
